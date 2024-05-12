@@ -6,7 +6,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             GUI example = new GUI();
             example.setVisible(true);
-            
+            // bu bir deneme commentidir bismillahirrahmirrahim ellezine amin
         });
     }
 }
