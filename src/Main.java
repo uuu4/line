@@ -6,7 +6,6 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             GUI example = new GUI();
             example.setVisible(true);
-            
-        });
+            System.out.println("merhaba dunya")       });
     }
 }
