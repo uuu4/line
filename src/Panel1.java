@@ -4,7 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-public class Panel extends JPanel {
+public class Panel1 extends JPanel {
     ImageIcon img1 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
     ImageIcon img2 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
     ImageIcon img3 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
@@ -36,12 +36,17 @@ public class Panel extends JPanel {
 
     int selectedImage = 0; // 0: Hiçbiri, 1: img1, 2: img2 diye devam ediyor... :3
 
-    Panel() {
+    JLabel draggedLabel;
+
+    Panel1() {
         ClickListener clickListener = new ClickListener();
         this.addMouseListener(clickListener);
 
         DragListener dragListener = new DragListener();
         this.addMouseMotionListener(dragListener);
+
+
+
     }
 
     @Override
@@ -64,33 +69,62 @@ public class Panel extends JPanel {
             if (clickPoint.getX() >= img1Corner.getX() && clickPoint.getX() <= img1Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img1Corner.getY() && clickPoint.getY() <= img1Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 1;
+                /* draggedLabel = new JLabel(img1);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img1Corner.getX(), (int) img1Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img2Corner.getX() && clickPoint.getX() <= img2Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img2Corner.getY() && clickPoint.getY() <= img2Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 2;
+                 /*draggedLabel = new JLabel(img2);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img2Corner.getX(), (int) img2Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img3Corner.getX() && clickPoint.getX() <= img3Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img3Corner.getY() && clickPoint.getY() <= img3Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 3;
+               /* draggedLabel = new JLabel(img3);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img3Corner.getX(), (int) img3Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img4Corner.getX() && clickPoint.getX() <= img4Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img4Corner.getY() && clickPoint.getY() <= img4Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 4;
+               /* draggedLabel = new JLabel(img4);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img4Corner.getX(), (int) img4Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img5Corner.getX() && clickPoint.getX() <= img5Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img5Corner.getY() && clickPoint.getY() <= img5Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 5;
+               /* draggedLabel = new JLabel(img5);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img5Corner.getX(), (int) img5Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img6Corner.getX() && clickPoint.getX() <= img6Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img6Corner.getY() && clickPoint.getY() <= img6Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 6;
+               /* draggedLabel = new JLabel(img6);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img6Corner.getX(), (int) img6Corner.getY());
+                add(draggedLabel);*/
             }
             else if (clickPoint.getX() >= img7Corner.getX() && clickPoint.getX() <= img7Corner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= img7Corner.getY() && clickPoint.getY() <= img7Corner.getY() + IMG_HEIGHT) {
                 selectedImage = 7;
+             /*   draggedLabel = new JLabel(img7);
+                draggedLabel.setSize(IMG_WIDTH, IMG_HEIGHT);
+                draggedLabel.setLocation((int) img7Corner.getX(), (int) img7Corner.getY());
+                add(draggedLabel);*/
             }
             else {
                 selectedImage = 0;
+               /* draggedLabel = null;*/
             }
 
             prevPoint1 = event.getPoint();
@@ -105,7 +139,7 @@ public class Panel extends JPanel {
         }
     }
 
-    private class DragListener extends MouseMotionAdapter {
+    private class DragListener extends MouseMotionAdapter { // ekstra olarak draggedLabel eklenicek
         @Override
         public void mouseDragged(MouseEvent event) {
             if (selectedImage == 1) {
@@ -150,6 +184,7 @@ public class Panel extends JPanel {
                         (int) (currentPoint.getY() - prevPoint7.getY()));
                 prevPoint7 = currentPoint;
             }
+
 
             repaint();
         }
