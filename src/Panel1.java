@@ -5,14 +5,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
-    ImageIcon img2 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
-    ImageIcon img3 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
-    ImageIcon img4 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
-    ImageIcon img5 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
+    ImageIcon img1 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/1.png");
+    ImageIcon img2 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/2.png");
+    ImageIcon img3 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/3.png");
+    ImageIcon img4 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/4.png");
+    ImageIcon img5 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/5.png");
 
-    ImageIcon img6 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
-    ImageIcon img7 = new ImageIcon("/Users/aliemreaydin/Downloads/emre-2-4.png");
+    ImageIcon img6 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/6.png");
+    ImageIcon img7 = new ImageIcon("/Users/aliemreaydin/ideaProjects/sup/photos/7   .png");
 
     final int IMG_WIDTH = img1.getIconWidth();
     final int IMG_HEIGHT = img1.getIconHeight();
@@ -36,7 +36,7 @@ public class Panel1 extends JPanel {
 
     int selectedImage = 0; // 0: Hiçbiri, 1: img1, 2: img2 diye devam ediyor... :3
 
-    JLabel draggedLabel;
+    //JLabel draggedLabel;
 
     Panel1() {
         ClickListener clickListener = new ClickListener();

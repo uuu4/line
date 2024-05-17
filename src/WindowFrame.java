@@ -12,19 +12,20 @@ public class WindowFrame extends JFrame {
 
         Panel1 panel1 = new Panel1();
         panel1.setBounds(0,0,300,500);
-        panel1.setBorder(BorderFactory.createLineBorder(Color.BLUE,20,true));
+        panel1.setBorder(BorderFactory.createLineBorder(Color.BLACK,5,false));
         this.add(panel1);
 
         Panel2 panel2 = new Panel2();
         panel2.setBounds(300, 0, 900, 500); // Set size of panel2
-        panel2.setBorder(BorderFactory.createLineBorder(Color.BLUE,20,true));
+        panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK,5,false));
         this.add(panel2); // Add panel2 to the right side
 
 
 
         Panel3 panel3 = new Panel3();
         panel3.setBounds(0,500,1200,300);
-        panel3.setBorder(BorderFactory.createLineBorder(Color.BLUE,20,true));
+        panel3.setBorder(BorderFactory.createLineBorder(Color.BLACK,5,false));
+        panel3.setBackground(Color.darkGray);
         this.add(panel3);
 
 
