@@ -35,5 +35,10 @@ public class WindowFrame extends JFrame {
         // Adding scrollPane to the bottom of the frame
         this.add(scrollPane, BorderLayout.SOUTH);
 
+        // Set relationships
+        panel1.setPanel2(panel2);
+        panel1.setPanel3(panel3);
+
         this.setVisible(true);
-    }}
+    }
+}

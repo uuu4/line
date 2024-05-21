@@ -5,13 +5,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("1.png");
-    ImageIcon img2 = new ImageIcon("2.png");
-    ImageIcon img3 = new ImageIcon("3.png");
-    ImageIcon img4 = new ImageIcon("4.png");
-    ImageIcon img5 = new ImageIcon("5.png");
-    ImageIcon img6 = new ImageIcon("6.png");
-    ImageIcon img7 = new ImageIcon("7.png");
+    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png");
+    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png");
+    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png");
+    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png");
+    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png");
+    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png");
+    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png");
 
     final int IMG_WIDTH = img1.getIconWidth();
     final int IMG_HEIGHT = img1.getIconHeight();
@@ -29,9 +29,14 @@ public class Panel1 extends JPanel {
     int selectedImage = 0; // 0: None, 1: img1, 2: img2, etc.
 
     private Panel2 panel2;
+    private Panel3 panel3;
 
     public void setPanel2(Panel2 panel2) {
         this.panel2 = panel2;
+    }
+
+    public void setPanel3(Panel3 panel3) {
+        this.panel3 = panel3;
     }
 
     Panel1() {
@@ -99,6 +104,7 @@ public class Panel1 extends JPanel {
 
                 if (isOutOfPanelBounds(imgCorner)) {
                     transferImageToPanel2(imgCorner);
+                    updatePanel3WithImageName();
                     removeSelectedImage();
                     repaint();
                 }
@@ -129,6 +135,13 @@ public class Panel1 extends JPanel {
                 panel2.addImage(image, pointInPanel2);
             }
         }
+
+        private void updatePanel3WithImageName() {
+            if (panel3 != null) {
+                String imageName = getSelectedImageName();
+                panel3.addImageName(imageName);
+            }
+        }
     }
 
     public ImageIcon cloneSelectedImage() {
@@ -155,5 +168,18 @@ public class Panel1 extends JPanel {
             case 7: img7 = null; break;
         }
         selectedImage = 0;
+    }
+
+    private String getSelectedImageName() {
+        switch (selectedImage) {
+            case 1: return "Image 1";
+            case 2: return "Image 2";
+            case 3: return "Image 3";
+            case 4: return "Image 4";
+            case 5: return "Image 5";
+            case 6: return "Image 6";
+            case 7: return "Image 7";
+            default: return "Unknown Image";
+        }
     }
 }
