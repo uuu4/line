@@ -3,33 +3,24 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png");
-    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png");
-    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png");
-    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png");
-    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png");
-    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png");
-    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png");
+    List<ImageIcon> images = new ArrayList<>();
+    List<Point> imagePositions = new ArrayList<>();
 
-    final int IMG_WIDTH = img1.getIconWidth();
-    final int IMG_HEIGHT = img1.getIconHeight();
-
-    Point img1Corner = new Point(50, 50);
-    Point img2Corner = new Point((int) img1Corner.getX() + 100, 50);
-    Point img3Corner = new Point(50, (int) img1Corner.getY() + 100);
-    Point img4Corner = new Point((int) img1Corner.getX() + 100, (int) img2Corner.getY() + 100);
-    Point img5Corner = new Point(50, (int) img3Corner.getY() + 100);
-    Point img6Corner = new Point((int) img1Corner.getX() + 100, (int) img4Corner.getY() + 100);
-    Point img7Corner = new Point(100, (int) img5Corner.getY() + 100);
+    final int IMG_WIDTH;
+    final int IMG_HEIGHT;
 
     Point prevPoint;
-
-    int selectedImage = 0; // 0: None, 1: img1, 2: img2, etc.
+    int selectedImage = -1; // -1: None, 0: img1, 1: img2, etc.
 
     private Panel2 panel2;
     private Panel3 panel3;
+
+    List<ImageIcon> clones = new ArrayList<>();
+    List<Point> clonePositions = new ArrayList<>();
 
     public void setPanel2(Panel2 panel2) {
         this.panel2 = panel2;
@@ -40,6 +31,28 @@ public class Panel1 extends JPanel {
     }
 
     Panel1() {
+        // Add images to the list
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png"));
+        images.add(new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png"));
+
+        // Add initial positions for the images
+        imagePositions.add(new Point(50, 50));
+        imagePositions.add(new Point(150, 50));
+        imagePositions.add(new Point(50, 150));
+        imagePositions.add(new Point(150, 150));
+        imagePositions.add(new Point(50, 250));
+        imagePositions.add(new Point(150, 250));
+        imagePositions.add(new Point(150, 350));
+
+        // Initialize width and height based on the first image
+        IMG_WIDTH = images.get(0).getIconWidth();
+        IMG_HEIGHT = images.get(0).getIconHeight();
+
         ClickListener clickListener = new ClickListener();
         this.addMouseListener(clickListener);
 
@@ -50,38 +63,29 @@ public class Panel1 extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (img1 != null) img1.paintIcon(this, g, (int) img1Corner.getX(), (int) img1Corner.getY());
-        if (img2 != null) img2.paintIcon(this, g, (int) img2Corner.getX(), (int) img2Corner.getY());
-        if (img3 != null) img3.paintIcon(this, g, (int) img3Corner.getX(), (int) img3Corner.getY());
-        if (img4 != null) img4.paintIcon(this, g, (int) img4Corner.getX(), (int) img4Corner.getY());
-        if (img5 != null) img5.paintIcon(this, g, (int) img5Corner.getX(), (int) img5Corner.getY());
-        if (img6 != null) img6.paintIcon(this, g, (int) img6Corner.getX(), (int) img6Corner.getY());
-        if (img7 != null) img7.paintIcon(this, g, (int) img7Corner.getX(), (int) img7Corner.getY());
+        for (int i = 0; i < images.size(); i++) {
+            if (images.get(i) != null) {
+                images.get(i).paintIcon(this, g, (int) imagePositions.get(i).getX(), (int) imagePositions.get(i).getY());
+            }
+        }
+        for (int i = 0; i < clones.size(); i++) {
+            clones.get(i).paintIcon(this, g, (int) clonePositions.get(i).getX(), (int) clonePositions.get(i).getY());
+        }
     }
 
     private class ClickListener extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent event) {
             Point clickPoint = event.getPoint();
+            selectedImage = -1;
 
-            if (isWithinImage(clickPoint, img1Corner)) {
-                selectedImage = 1;
-            } else if (isWithinImage(clickPoint, img2Corner)) {
-                selectedImage = 2;
-            } else if (isWithinImage(clickPoint, img3Corner)) {
-                selectedImage = 3;
-            } else if (isWithinImage(clickPoint, img4Corner)) {
-                selectedImage = 4;
-            } else if (isWithinImage(clickPoint, img5Corner)) {
-                selectedImage = 5;
-            } else if (isWithinImage(clickPoint, img6Corner)) {
-                selectedImage = 6;
-            } else if (isWithinImage(clickPoint, img7Corner)) {
-                selectedImage = 7;
-            } else {
-                selectedImage = 0;
+            for (int i = 0; i < imagePositions.size(); i++) {
+                if (isWithinImage(clickPoint, imagePositions.get(i))) {
+                    selectedImage = i;
+                    cloneImage(images.get(i), imagePositions.get(i));
+                    break;
+                }
             }
-
             prevPoint = event.getPoint();
         }
 
@@ -89,14 +93,19 @@ public class Panel1 extends JPanel {
             return clickPoint.getX() >= imgCorner.getX() && clickPoint.getX() <= imgCorner.getX() + IMG_WIDTH &&
                     clickPoint.getY() >= imgCorner.getY() && clickPoint.getY() <= imgCorner.getY() + IMG_HEIGHT;
         }
+
+        private void cloneImage(ImageIcon image, Point originalPosition) {
+            clones.add(new ImageIcon(image.getImage()));
+            clonePositions.add(new Point(originalPosition));
+        }
     }
 
     private class DragListener extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent event) {
-            if (selectedImage != 0) {
+            if (selectedImage != -1) {
                 Point currentPoint = event.getPoint();
-                Point imgCorner = getSelectedImageCorner();
+                Point imgCorner = imagePositions.get(selectedImage);
                 imgCorner.translate((int) (currentPoint.getX() - prevPoint.getX()),
                         (int) (currentPoint.getY() - prevPoint.getY()));
                 prevPoint = currentPoint;
@@ -108,19 +117,6 @@ public class Panel1 extends JPanel {
                     removeSelectedImage();
                     repaint();
                 }
-            }
-        }
-
-        private Point getSelectedImageCorner() {
-            switch (selectedImage) {
-                case 1: return img1Corner;
-                case 2: return img2Corner;
-                case 3: return img3Corner;
-                case 4: return img4Corner;
-                case 5: return img5Corner;
-                case 6: return img6Corner;
-                case 7: return img7Corner;
-                default: return null;
             }
         }
 
@@ -145,40 +141,31 @@ public class Panel1 extends JPanel {
     }
 
     public ImageIcon cloneSelectedImage() {
-        switch (selectedImage) {
-            case 1: return new ImageIcon(img1.getImage());
-            case 2: return new ImageIcon(img2.getImage());
-            case 3: return new ImageIcon(img3.getImage());
-            case 4: return new ImageIcon(img4.getImage());
-            case 5: return new ImageIcon(img5.getImage());
-            case 6: return new ImageIcon(img6.getImage());
-            case 7: return new ImageIcon(img7.getImage());
-            default: return null;
+        if (selectedImage >= 0 && selectedImage < images.size()) {
+            return new ImageIcon(images.get(selectedImage).getImage());
         }
+        return null;
     }
 
     public void removeSelectedImage() {
-        switch (selectedImage) {
-            case 1: img1 = null; break;
-            case 2: img2 = null; break;
-            case 3: img3 = null; break;
-            case 4: img4 = null; break;
-            case 5: img5 = null; break;
-            case 6: img6 = null; break;
-            case 7: img7 = null; break;
+        if (selectedImage >= 0 && selectedImage < images.size()) {
+            images.set(selectedImage, null);
+            selectedImage = -1;
         }
-        selectedImage = 0;
     }
 
     private String getSelectedImageName() {
         switch (selectedImage) {
-            case 1: return "Image 1";
-            case 2: return "Image 2";
-            case 3: return "Image 3";
-            case 4: return "Image 4";
-            case 5: return "Image 5";
-            case 6: return "Image 6";
-            case 7: return "Image 7";
+            case 0: return "public class Main {\n" +
+                    "    public static void main(String[] args) {\n" +
+                    "        \n";
+            case 1: return "Image 2";
+            case 2: return "Image 3";
+            case 3: return "Image 4";
+            case 4: return "Image 5";
+            case 5: return "Image 6";
+            case 6: return "    }\n" +
+                    "}\n";
             default: return "Unknown Image";
         }
     }
