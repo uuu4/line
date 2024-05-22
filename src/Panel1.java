@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png");
-    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png");
-    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png");
-    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png");
-    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png");
-    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png");
-    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png");
+    ImageIcon img1 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\1.png");
+    ImageIcon img2 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\2.png");
+    ImageIcon img3 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\3.png");
+    ImageIcon img4 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\4.png");
+    ImageIcon img5 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\5.png");
+    ImageIcon img6 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\6.png");
+    ImageIcon img7 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\7.png");
 
     final int IMG_WIDTH = img1.getIconWidth();
     final int IMG_HEIGHT = img1.getIconHeight();
