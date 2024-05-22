@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png");
-    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png");
-    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png");
-    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png");
-    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png");
-    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png");
-    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png");
+    ImageIcon img1 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\1.png");
+    ImageIcon img2 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\2.png");
+    ImageIcon img3 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\3.png");
+    ImageIcon img4 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\4.png");
+    ImageIcon img5 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\5.png");
+    ImageIcon img6 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\6.png");
+    ImageIcon img7 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\7.png");
 
     final int IMG_WIDTH = img1.getIconWidth();
     final int IMG_HEIGHT = img1.getIconHeight();
@@ -115,33 +115,22 @@ public class Panel1 extends JPanel {
     private class DragListener extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent event) {
-            if (selectedImage != 0) {
+            if (selectedImage != 0 && !clones.isEmpty()) {
                 Point currentPoint = event.getPoint();
-                Point imgCorner = getSelectedImageCorner();
-                imgCorner.translate((int) (currentPoint.getX() - prevPoint.getX()),
+                int lastCloneIndex = clones.size() - 1;
+                Point cloneCorner = clonePositions.get(lastCloneIndex);
+                cloneCorner.translate((int) (currentPoint.getX() - prevPoint.getX()),
                         (int) (currentPoint.getY() - prevPoint.getY()));
                 prevPoint = currentPoint;
                 repaint();
 
-                if (isOutOfPanelBounds(imgCorner)) {
-                    transferImageToPanel2(imgCorner);
+                if (isOutOfPanelBounds(cloneCorner)) {
+                    transferImageToPanel2(cloneCorner);
                     updatePanel3WithImageName();
-                    removeSelectedImage();
+                    clones.remove(lastCloneIndex);
+                    clonePositions.remove(lastCloneIndex);
                     repaint();
                 }
-            }
-        }
-
-        private Point getSelectedImageCorner() {
-            switch (selectedImage) {
-                case 1: return img1Corner;
-                case 2: return img2Corner;
-                case 3: return img3Corner;
-                case 4: return img4Corner;
-                case 5: return img5Corner;
-                case 6: return img6Corner;
-                case 7: return img7Corner;
-                default: return null;
             }
         }
 
@@ -178,33 +167,18 @@ public class Panel1 extends JPanel {
         }
     }
 
-    public void removeSelectedImage() {
-        switch (selectedImage) {
-            case 1: img1 = null; break;
-            case 2: img2 = null; break;
-            case 3: img3 = null; break;
-            case 4: img4 = null; break;
-            case 5: img5 = null; break;
-            case 6: img6 = null; break;
-            case 7: img7 = null; break;
-        }
-        selectedImage = 0;
-    }
-
     private String getSelectedImageName() {
         switch (selectedImage) {
             case 1: return "public class Main {\n" +
                     "    public static void main(String[] args) {\n" +
-                    "        \n"
-                    ;
+                    "        \n";
             case 2: return "Image 2";
             case 3: return "Image 3";
             case 4: return "Image 4";
             case 5: return "Image 5";
             case 6: return "Image 6";
-            case 7: return "    }\n" +
-                    "}\n";
-            default: return "Unknown Image";
+            case 7: return "Image 7";
+            default: return "";
         }
     }
 }

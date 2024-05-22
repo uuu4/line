@@ -19,7 +19,7 @@ public class Panel2 extends JPanel {
     Panel2() {
         ClickListener clickListener = new ClickListener();
         this.addMouseListener(clickListener);
-
+     //   setLayout(null);
         DragListener dragListener = new DragListener();
         this.addMouseMotionListener(dragListener);
     }
@@ -94,30 +94,16 @@ public class Panel2 extends JPanel {
             }
         }
     }
-
-    public void addImage(ImageIcon image, Point point) {
-        if (img1 == null) {
-            img1 = image;
-            img1Corner = point;
-        } else if (img2 == null) {
-            img2 = image;
-            img2Corner = point;
-        } else if (img3 == null) {
-            img3 = image;
-            img3Corner = point;
-        } else if (img4 == null) {
-            img4 = image;
-            img4Corner = point;
-        } else if (img5 == null) {
-            img5 = image;
-            img5Corner = point;
-        } else if (img6 == null) {
-            img6 = image;
-            img6Corner = point;
-        } else if (img7 == null) {
-            img7 = image;
-            img7Corner = point;
-        }
+    private int nextY = 0;
+    private int nextX = 0;
+    public void addImage(ImageIcon image, Point location) {
+        JLabel label = new JLabel(image);
+        label.setBounds(location.x, location.y, image.getIconWidth(), image.getIconHeight());
+        add(label);
+        revalidate();
         repaint();
     }
-}
+
+    }
+
+
