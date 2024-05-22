@@ -10,12 +10,11 @@ public class Panel2 extends JPanel {
     List<ImageIcon> images = new ArrayList<>();
     List<Point> imageCorners = new ArrayList<>();
 
-    final int IMG_WIDTH = 100; // Assuming fixed width for simplicity
-    final int IMG_HEIGHT = 100; // Assuming fixed height for simplicity
+    final int IMG_WIDTH = 100;
+    final int IMG_HEIGHT = 100;
 
     Point prevPoint;
-
-    int selectedImageIndex = -1; // -1: None
+    int selectedImageIndex = -1;
 
     Panel2() {
         ClickListener clickListener = new ClickListener();
@@ -28,10 +27,18 @@ public class Panel2 extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // Draw images
         for (int i = 0; i < images.size(); i++) {
             ImageIcon image = images.get(i);
             Point corner = imageCorners.get(i);
-            image.paintIcon(this, g, (int) corner.getX(), (int) corner.getY());
+            image.paintIcon(this, g, corner.x, corner.y);
+        }
+        // Draw lines between images
+        g.setColor(Color.BLACK);
+        for (int i = 1; i < imageCorners.size(); i++) {
+            Point prev = imageCorners.get(i - 1);
+            Point current = imageCorners.get(i);
+            g.drawLine(prev.x + IMG_WIDTH / 2, prev.y + IMG_HEIGHT / 2, current.x + IMG_WIDTH / 2, current.y + IMG_HEIGHT / 2);
         }
     }
 
@@ -50,12 +57,12 @@ public class Panel2 extends JPanel {
                     return i;
                 }
             }
-            return -1; // None selected
+            return -1;
         }
 
         private boolean isWithinImage(Point clickPoint, Point imgCorner) {
-            return clickPoint.getX() >= imgCorner.getX() && clickPoint.getX() <= imgCorner.getX() + IMG_WIDTH &&
-                    clickPoint.getY() >= imgCorner.getY() && clickPoint.getY() <= imgCorner.getY() + IMG_HEIGHT;
+            return clickPoint.x >= imgCorner.x && clickPoint.x <= imgCorner.x + IMG_WIDTH &&
+                    clickPoint.y >= imgCorner.y && clickPoint.y <= imgCorner.y + IMG_HEIGHT;
         }
     }
 
@@ -65,8 +72,7 @@ public class Panel2 extends JPanel {
             if (selectedImageIndex != -1) {
                 Point currentPoint = event.getPoint();
                 Point imgCorner = imageCorners.get(selectedImageIndex);
-                imgCorner.translate((int) (currentPoint.getX() - prevPoint.getX()),
-                        (int) (currentPoint.getY() - prevPoint.getY()));
+                imgCorner.translate(currentPoint.x - prevPoint.x, currentPoint.y - prevPoint.y);
                 prevPoint = currentPoint;
                 repaint();
             }

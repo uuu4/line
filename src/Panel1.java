@@ -7,28 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Panel1 extends JPanel {
-    ImageIcon img1 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\1.png");
-    ImageIcon img2 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\2.png");
-    ImageIcon img3 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\3.png");
-    ImageIcon img4 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\4.png");
-    ImageIcon img5 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\5.png");
-    ImageIcon img6 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\6.png");
-    ImageIcon img7 = new ImageIcon("C:\\Users\\saruh\\OneDrive\\Dokumente\\GitHub\\interactive-flowcharts\\7.png");
+    ImageIcon img1 = new ImageIcon("1.png");
+    ImageIcon img2 = new ImageIcon("2.png");
+    ImageIcon img3 = new ImageIcon("3.png");
+    ImageIcon img4 = new ImageIcon("4.png");
+    ImageIcon img5 = new ImageIcon("5.png");
+    ImageIcon img6 = new ImageIcon("6.png");
+    ImageIcon img7 = new ImageIcon("7.png");
 
     final int IMG_WIDTH = img1.getIconWidth();
     final int IMG_HEIGHT = img1.getIconHeight();
 
     Point img1Corner = new Point(50, 50);
-    Point img2Corner = new Point((int) img1Corner.getX() + 100, 50);
-    Point img3Corner = new Point(50, (int) img1Corner.getY() + 100);
-    Point img4Corner = new Point((int) img1Corner.getX() + 100, (int) img2Corner.getY() + 100);
-    Point img5Corner = new Point(50, (int) img3Corner.getY() + 100);
-    Point img6Corner = new Point((int) img1Corner.getX() + 100, (int) img4Corner.getY() + 100);
-    Point img7Corner = new Point(100, (int) img5Corner.getY() + 100);
+    Point img2Corner = new Point(img1Corner.x + 100, 50);
+    Point img3Corner = new Point(50, img1Corner.y + 100);
+    Point img4Corner = new Point(img1Corner.x + 100, img2Corner.y + 100);
+    Point img5Corner = new Point(50, img3Corner.y + 100);
+    Point img6Corner = new Point(img1Corner.x + 100, img4Corner.y + 100);
+    Point img7Corner = new Point(100, img5Corner.y + 100);
 
     Point prevPoint;
-
-    int selectedImage = 0; // 0: None, 1: img1, 2: img2, etc.
+    int selectedImage = 0;
 
     private Panel2 panel2;
     private Panel3 panel3;
@@ -55,16 +54,16 @@ public class Panel1 extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (img1 != null) img1.paintIcon(this, g, (int) img1Corner.getX(), (int) img1Corner.getY());
-        if (img2 != null) img2.paintIcon(this, g, (int) img2Corner.getX(), (int) img2Corner.getY());
-        if (img3 != null) img3.paintIcon(this, g, (int) img3Corner.getX(), (int) img3Corner.getY());
-        if (img4 != null) img4.paintIcon(this, g, (int) img4Corner.getX(), (int) img4Corner.getY());
-        if (img5 != null) img5.paintIcon(this, g, (int) img5Corner.getX(), (int) img5Corner.getY());
-        if (img6 != null) img6.paintIcon(this, g, (int) img6Corner.getX(), (int) img6Corner.getY());
-        if (img7 != null) img7.paintIcon(this, g, (int) img7Corner.getX(), (int) img7Corner.getY());
+        if (img1 != null) img1.paintIcon(this, g, img1Corner.x, img1Corner.y);
+        if (img2 != null) img2.paintIcon(this, g, img2Corner.x, img2Corner.y);
+        if (img3 != null) img3.paintIcon(this, g, img3Corner.x, img3Corner.y);
+        if (img4 != null) img4.paintIcon(this, g, img4Corner.x, img4Corner.y);
+        if (img5 != null) img5.paintIcon(this, g, img5Corner.x, img5Corner.y);
+        if (img6 != null) img6.paintIcon(this, g, img6Corner.x, img6Corner.y);
+        if (img7 != null) img7.paintIcon(this, g, img7Corner.x, img7Corner.y);
 
         for (int i = 0; i < clones.size(); i++) {
-            clones.get(i).paintIcon(this, g, (int) clonePositions.get(i).getX(), (int) clonePositions.get(i).getY());
+            clones.get(i).paintIcon(this, g, clonePositions.get(i).x, clonePositions.get(i).y);
         }
     }
 
@@ -102,8 +101,8 @@ public class Panel1 extends JPanel {
         }
 
         private boolean isWithinImage(Point clickPoint, Point imgCorner) {
-            return clickPoint.getX() >= imgCorner.getX() && clickPoint.getX() <= imgCorner.getX() + IMG_WIDTH &&
-                    clickPoint.getY() >= imgCorner.getY() && clickPoint.getY() <= imgCorner.getY() + IMG_HEIGHT;
+            return clickPoint.x >= imgCorner.x && clickPoint.x <= imgCorner.x + IMG_WIDTH &&
+                    clickPoint.y >= imgCorner.y && clickPoint.y <= imgCorner.y + IMG_HEIGHT;
         }
 
         private void cloneImage(ImageIcon image, Point originalPosition) {
@@ -119,8 +118,7 @@ public class Panel1 extends JPanel {
                 Point currentPoint = event.getPoint();
                 int lastCloneIndex = clones.size() - 1;
                 Point cloneCorner = clonePositions.get(lastCloneIndex);
-                cloneCorner.translate((int) (currentPoint.getX() - prevPoint.getX()),
-                        (int) (currentPoint.getY() - prevPoint.getY()));
+                cloneCorner.translate(currentPoint.x - prevPoint.x, currentPoint.y - prevPoint.y);
                 prevPoint = currentPoint;
                 repaint();
 
@@ -138,11 +136,24 @@ public class Panel1 extends JPanel {
             return imgCorner.x < 0 || imgCorner.x > getWidth() || imgCorner.y < 0 || imgCorner.y > getHeight();
         }
 
-        private void transferImageToPanel2(Point imgCorner) {
+        private void transferImageToPanel2(Point point) {
             if (panel2 != null) {
-                ImageIcon image = cloneSelectedImage();
-                Point pointInPanel2 = SwingUtilities.convertPoint(Panel1.this, imgCorner, panel2);
-                panel2.addImage(image, pointInPanel2);
+                ImageIcon imageToTransfer = getSelectedImageIcon();
+                Point adjustedPoint = new Point(point.x - IMG_WIDTH, point.y - IMG_HEIGHT); // Adjust point if necessary
+                panel2.addImage(imageToTransfer, adjustedPoint);
+            }
+        }
+
+        private ImageIcon getSelectedImageIcon() {
+            switch (selectedImage) {
+                case 1: return img1;
+                case 2: return img2;
+                case 3: return img3;
+                case 4: return img4;
+                case 5: return img5;
+                case 6: return img6;
+                case 7: return img7;
+                default: return null;
             }
         }
 
@@ -154,24 +165,9 @@ public class Panel1 extends JPanel {
         }
     }
 
-    public ImageIcon cloneSelectedImage() {
-        switch (selectedImage) {
-            case 1: return new ImageIcon(img1.getImage());
-            case 2: return new ImageIcon(img2.getImage());
-            case 3: return new ImageIcon(img3.getImage());
-            case 4: return new ImageIcon(img4.getImage());
-            case 5: return new ImageIcon(img5.getImage());
-            case 6: return new ImageIcon(img6.getImage());
-            case 7: return new ImageIcon(img7.getImage());
-            default: return null;
-        }
-    }
-
     private String getSelectedImageName() {
         switch (selectedImage) {
-            case 1: return "public class Main {\n" +
-                    "    public static void main(String[] args) {\n" +
-                    "        \n";
+            case 1: return "Image 1";
             case 2: return "Image 2";
             case 3: return "Image 3";
             case 4: return "Image 4";
@@ -179,5 +175,6 @@ public class Panel1 extends JPanel {
             case 6: return "Image 6";
             case 7: return "Image 7";
             default: return "";
-
-}}}
+        }
+    }
+}
