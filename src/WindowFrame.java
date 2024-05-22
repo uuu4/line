@@ -8,31 +8,37 @@ public class WindowFrame extends JFrame {
         this.setTitle("github.com/uuu4");
         this.setLocationRelativeTo(null);
         this.setResizable(true);
-        this.setLayout(null); // Use absolute layout
+        this.setLayout(new BorderLayout());
 
+        // Panel1
         Panel1 panel1 = new Panel1();
-        panel1.setBounds(0, 0, 300, 500);
+        panel1.setPreferredSize(new Dimension(300, 500));
         panel1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
-        this.add(panel1);
+        this.add(panel1, BorderLayout.WEST);
 
+        // Panel2
         Panel2 panel2 = new Panel2();
-        panel2.setBounds(300, 0, 900, 500); // Set size of panel2
+        panel2.setPreferredSize(new Dimension(900, 500)); // Set size of panel2
         panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
-        this.add(panel2); // Add panel2 to the right side
+        this.add(panel2, BorderLayout.CENTER); // Add panel2 to the right side
 
-        // Set the relationship for image transfer
-        panel1.setPanel2(panel2);
-
+        // Panel3 with JScrollPane
         Panel3 panel3 = new Panel3();
-        panel3.setBounds(0, 500, 1200, 300);
-        panel3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
+        panel3.setPreferredSize(new Dimension(1180, 300)); // Set preferred size larger to allow scrolling
         panel3.setBackground(Color.darkGray);
-        this.add(panel3);
+
+        JScrollPane scrollPane = new JScrollPane(panel3);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.darkGray, 5, false)); // Test için sınır çizin
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        // Adding scrollPane to the bottom of the frame
+        this.add(scrollPane, BorderLayout.SOUTH);
+
+        // Set relationships
+        panel1.setPanel2(panel2);
+        panel1.setPanel3(panel3);
 
         this.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new WindowFrame();
     }
 }
