@@ -19,8 +19,6 @@ public class Panel3 extends JPanel {
         revalidate();
         repaint();
     }
-<<<<<<< Updated upstream
-=======
 
     public void addInputs(List<JTextField> inputs) {
         this.inputs.addAll(inputs);
@@ -107,5 +105,4 @@ public class Panel3 extends JPanel {
             }
         }
     }
->>>>>>> Stashed changes
 }
