@@ -48,12 +48,10 @@ public class WindowFrame extends JFrame {
         panel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (panel2.getImageNames().size() > 0) {
-                    panel3.addImageName(panel2.getImageNames().get(panel2.getImageNames().size() - 1));
-                    panel3.addInputs(panel2.getInputs());
-                    panel3.addConnections(panel2.getConnections());
-                    panel3.repaint();
-                }
+                panel3.addImageName(panel2.getImageNames().get(panel2.getImageNames().size() - 1));
+                panel3.addInputs(panel2.getInputs());
+                panel3.addConnections(panel2.getConnections());
+                panel3.updateCode();
             }
         });
 

@@ -7,9 +7,14 @@ public class Panel3 extends JPanel {
     private List<String> imageNames = new ArrayList<>();
     private List<JTextField> inputs = new ArrayList<>();
     private List<List<Integer>> connections = new ArrayList<>();
+    private JTextArea codeArea;
 
     Panel3() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        codeArea = new JTextArea(20, 50);
+        codeArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        codeArea.setEditable(false);
+        add(new JScrollPane(codeArea));
     }
 
     public void addImageName(String imageName) {
@@ -28,10 +33,8 @@ public class Panel3 extends JPanel {
         this.connections.addAll(connections);
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawString(generateJavaCode(), 10, 20);
+    public void updateCode() {
+        codeArea.setText(generateJavaCode());
     }
 
     public String generateJavaCode() {
@@ -60,7 +63,7 @@ public class Panel3 extends JPanel {
             case "Process":
                 code.append("        // Process\n");
                 code.append("        ");
-                code.append(inputs.get(index).getText()).append("\n");
+                code.append(inputs.get(index).getText()).append(";\n");
                 break;
             case "IfBlock":
                 code.append("        // IfBlock\n");

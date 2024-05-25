@@ -16,13 +16,13 @@ public class Panel2 extends JPanel {
     final int IMG_WIDTH = 100;
     final int IMG_HEIGHT = 100;
 
-    ImageIcon img1 = new ImageIcon("path/to/1.png"); // replace with actual path
-    ImageIcon img2 = new ImageIcon("path/to/2.png"); // replace with actual path
-    ImageIcon img3 = new ImageIcon("path/to/3.png"); // replace with actual path
-    ImageIcon img4 = new ImageIcon("path/to/4.png"); // replace with actual path
-    ImageIcon img5 = new ImageIcon("path/to/5.png"); // replace with actual path
-    ImageIcon img6 = new ImageIcon("path/to/6.png"); // replace with actual path
-    ImageIcon img7 = new ImageIcon("path/to/7.png"); // replace with actual path
+    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png"); // replace with actual path
+    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png"); // replace with actual path
+    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png"); // replace with actual path
+    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png"); // replace with actual path
+    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png"); // replace with actual path
+    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png"); // replace with actual path
+    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png"); // replace with actual path
 
     Point prevPoint;
     int selectedImageIndex = -1;
@@ -113,6 +113,7 @@ public class Panel2 extends JPanel {
             inputs.add(null);
         }
 
+        imageNames.add(image.getDescription()); // Add the image name to the list
         repaint();
     }
 
