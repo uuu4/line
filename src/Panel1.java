@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Panel1 extends JPanel {
+<<<<<<< Updated upstream
     ImageIcon img1 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\1.png");
     ImageIcon img2 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\2.png");
     ImageIcon img3 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\3.png");
@@ -14,10 +12,15 @@ public class Panel1 extends JPanel {
     ImageIcon img5 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\5.png");
     ImageIcon img6 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\6.png");
     ImageIcon img7 = new ImageIcon("C:\\Users\\semih\\OneDrive\\Belgeler\\GitHub\\interactive-flowcharts\\7.png");
+=======
+    Panel2 panel2;
+    Panel3 panel3;
+>>>>>>> Stashed changes
 
-    final int IMG_WIDTH = img1.getIconWidth();
-    final int IMG_HEIGHT = img1.getIconHeight();
+    Panel1() {
+        setLayout(new GridLayout(7, 1));
 
+<<<<<<< Updated upstream
     Point img1Corner = new Point(50, 50);
     Point img2Corner = new Point((int) img1Corner.getX() + 100, 50);
     Point img3Corner = new Point(50, (int) img1Corner.getY() + 100);
@@ -29,12 +32,76 @@ public class Panel1 extends JPanel {
     Point prevPoint;
 
     int selectedImage = 0; // 0: None, 1: img1, 2: img2, etc.
+=======
+        JButton btn1 = new JButton("Start");
+        btn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img1, new Point(50, 50), false);
+                panel3.addImageName("Start");
+            }
+        });
+        add(btn1);
 
-    private Panel2 panel2;
-    private Panel3 panel3;
+        JButton btn2 = new JButton("Process");
+        btn2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img2, new Point(200, 50), true);
+                panel3.addImageName("Process");
+            }
+        });
+        add(btn2);
+>>>>>>> Stashed changes
 
+        JButton btn3 = new JButton("If Block");
+        btn3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img3, new Point(350, 50), true);
+                panel3.addImageName("IfBlock");
+            }
+        });
+        add(btn3);
+
+<<<<<<< Updated upstream
     List<ImageIcon> clones = new ArrayList<>();
     List<Point> clonePositions = new ArrayList<>();
+=======
+        JButton btn4 = new JButton("Output");
+        btn4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img4, new Point(500, 50), true);
+                panel3.addImageName("Output");
+            }
+        });
+        add(btn4);
+
+        JButton btn5 = new JButton("Else Block");
+        btn5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img5, new Point(650, 50), true);
+                panel3.addImageName("ElseBlock");
+            }
+        });
+        add(btn5);
+
+        JButton btn6 = new JButton("Loop");
+        btn6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img6, new Point(800, 50), true);
+                panel3.addImageName("Loop");
+            }
+        });
+        add(btn6);
+
+        JButton btn7 = new JButton("End");
+        btn7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel2.addImage(panel2.img7, new Point(950, 50), false);
+                panel3.addImageName("End");
+            }
+        });
+        add(btn7);
+    }
+>>>>>>> Stashed changes
 
     public void setPanel2(Panel2 panel2) {
         this.panel2 = panel2;
@@ -43,6 +110,7 @@ public class Panel1 extends JPanel {
     public void setPanel3(Panel3 panel3) {
         this.panel3 = panel3;
     }
+<<<<<<< Updated upstream
 
     Panel1() {
         ClickListener clickListener = new ClickListener();
@@ -181,4 +249,6 @@ public class Panel1 extends JPanel {
             default: return "";
         }
     }
+=======
+>>>>>>> Stashed changes
 }
