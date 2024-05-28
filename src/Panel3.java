@@ -10,16 +10,15 @@ public class Panel3 extends JPanel {
     private JTextArea codeArea;
 
     Panel3() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BorderLayout()); // BoxLayout yerine BorderLayout kullan
         codeArea = new JTextArea(20, 50);
         codeArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         codeArea.setEditable(false);
-        add(new JScrollPane(codeArea));
+        JScrollPane scrollPane = new JScrollPane(codeArea); // JTextArea'nın kendi JScrollPane'ini kullan
+        this.add(scrollPane, BorderLayout.CENTER); // JScrollPane'i BorderLayout'un CENTER bölgesine ekle
     }
 
     public void addImageName(String imageName) {
-        JLabel imageNameLabel = new JLabel(imageName);
-        this.add(imageNameLabel);
         imageNames.add(imageName);
         revalidate();
         repaint();
