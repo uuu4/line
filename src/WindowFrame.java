@@ -43,17 +43,7 @@ public class WindowFrame extends JFrame {
         // Set relationships
         panel1.setPanel2(panel2);
         panel1.setPanel3(panel3);
-
-        // Update Panel3 based on Panel2 content
-        panel2.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                panel3.addImageName(panel2.getImageNames().get(panel2.getImageNames().size() - 1));
-                panel3.addInputs(panel2.getInputs());
-                panel3.addConnections(panel2.getConnections());
-                panel3.updateCode();
-            }
-        });
+        panel2.setPanel3(panel3);
 
         this.setVisible(true);
     }

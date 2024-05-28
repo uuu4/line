@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,8 @@ public class Panel2 extends JPanel {
     List<JTextField> inputs = new ArrayList<>();
     List<String> imageNames = new ArrayList<>();
     List<List<Integer>> connections = new ArrayList<>();
+
+    private Panel3 panel3;
 
     final int IMG_WIDTH = 100;
     final int IMG_HEIGHT = 100;
@@ -34,6 +34,21 @@ public class Panel2 extends JPanel {
 
         DragListener dragListener = new DragListener();
         this.addMouseMotionListener(dragListener);
+
+        JButton runButton = new JButton("Run");
+        runButton.setBounds(10, 10, 80, 30);  // Adjust the position and size as needed
+        runButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (panel3 != null) {
+                    panel3.addInputs(getInputs());
+                    panel3.addConnections(getConnections());
+                    panel3.updateCode();
+                }
+            }
+        });
+        this.setLayout(null);  // Using absolute positioning for the button
+        this.add(runButton);
     }
 
     @Override
@@ -127,5 +142,9 @@ public class Panel2 extends JPanel {
 
     public List<List<Integer>> getConnections() {
         return connections;
+    }
+
+    public void setPanel3(Panel3 panel3) {
+        this.panel3 = panel3;
     }
 }
