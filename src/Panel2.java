@@ -16,13 +16,13 @@ public class Panel2 extends JPanel {
     final int IMG_WIDTH = 100;
     final int IMG_HEIGHT = 100;
 
-    ImageIcon img1 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\1.png"); // replace with actual path
-    ImageIcon img2 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\2.png"); // replace with actual path
-    ImageIcon img3 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\3.png"); // replace with actual path
-    ImageIcon img4 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\4.png"); // replace with actual path
-    ImageIcon img5 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\5.png"); // replace with actual path
-    ImageIcon img6 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\6.png"); // replace with actual path
-    ImageIcon img7 = new ImageIcon("C:\\Users\\Emir Başak Sunar\\Documents\\GitHub\\interactive-flowcharts\\7.png"); // replace with actual path
+    ImageIcon img1 = new ImageIcon(getClass().getResource("/images/1.png")); // Use getResource to load image from classpath
+    ImageIcon img2 = new ImageIcon(getClass().getResource("/images/2.png"));
+    ImageIcon img3 = new ImageIcon(getClass().getResource("/images/3.png"));
+    ImageIcon img4 = new ImageIcon(getClass().getResource("/images/4.png"));
+    ImageIcon img5 = new ImageIcon(getClass().getResource("/images/5.png"));
+    ImageIcon img6 = new ImageIcon(getClass().getResource("/images/6.png"));
+    ImageIcon img7 = new ImageIcon(getClass().getResource("/images/7.png"));
 
     Point prevPoint;
     int selectedImageIndex = -1;
