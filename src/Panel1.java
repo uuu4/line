@@ -67,7 +67,7 @@ public class Panel1 extends JPanel {
         JButton btn7 = new JButton("End");
         btn7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                panel2.addImage(panel2.img7, new Point(950, 50), false);
+                panel2.addImage(panel2.img7, new Point(50, 250), false);
                 panel3.addImageName("End");
             }
         });
