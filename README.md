@@ -10,7 +10,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](/)
+![screenshot](/resources/images/screenshot.png)
 
 This Java project creates an interactive flowchart application, allowing users to visually design flowcharts and generate corresponding Java code. The flowcharts are not just graphical; the generated code can be executed to see the results.
 
@@ -39,15 +39,13 @@ NOTE: Requires JDK22 or newer version.
    ```
 3. Navigate to the src directory
   ```sh
-   cd interactive-flowcharts/src
+    cd interactive-flowcharts/src
    ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please contact.
+this header will be updated soon.
 
 
 <!-- CONTRIBUTING -->
