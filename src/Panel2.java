@@ -49,6 +49,20 @@ public class Panel2 extends JPanel {
         });
         this.setLayout(null);  // Using absolute positioning for the button
         this.add(runButton);
+
+        // Clear button
+        JButton clearButton = new JButton("Clear");
+        clearButton.setBounds(100, 10, 80, 30);  // Adjust the position and size as needed
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearPanel();
+                if (panel3 != null) {
+                    panel3.clearPanel();
+                }
+            }
+        });
+        this.add(clearButton);
     }
 
     @Override
@@ -146,5 +160,21 @@ public class Panel2 extends JPanel {
 
     public void setPanel3(Panel3 panel3) {
         this.panel3 = panel3;
+    }
+
+    public void clearPanel() {
+        images.clear();
+        imageCorners.clear();
+        for (JTextField input : inputs) {
+            if (input != null) {
+                this.remove(input);
+            }
+        }
+        inputs.clear();
+        imageNames.clear();
+        connections.clear();
+        selectedImageIndex = -1;
+        lastSelectedIndex = -1;
+        repaint();
     }
 }

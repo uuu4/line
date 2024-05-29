@@ -41,27 +41,26 @@ public class Panel3 extends JPanel {
         sb.append("public class GeneratedCode {\n");
         sb.append("    public static void main(String[] args) {\n");
 
-        appendNestedCode(sb, -1, "    ");
+        appendNestedCode(sb, -1, "    ", new ArrayList<>());
 
         sb.append("    }\n");
         sb.append("}\n");
         return sb.toString();
     }
 
-    private void appendNestedCode(StringBuilder sb, int parentIndex, String indent) {
+    private void appendNestedCode(StringBuilder sb, int parentIndex, String indent, List<Integer> visited) {
         for (int i = 0; i < imageNames.size(); i++) {
-            if (parentIndex == -1 || isConnected(parentIndex, i)) {
+            if ((parentIndex == -1 || isConnected(parentIndex, i)) && !visited.contains(i)) {
+                visited.add(i);
                 String imageName = imageNames.get(i);
                 String code = getCodeForShape(imageName, i, indent);
                 sb.append(code);
                 if (imageName.equals("IfBlock") || imageName.equals("ElseBlock") || imageName.equals("Loop")) {
-                    int nestedIndex = getFirstConnectedIndex(i);
-                    if (nestedIndex != -1) {
-                        String nestedCode = getCodeForShape(imageNames.get(nestedIndex), nestedIndex, indent + "    ");
-                        sb.append(nestedCode);
-                    }
-                    sb.append(indent).append("}\n");  // Close the block
+                    sb.append(indent).append("{\n");
+                    appendNestedCode(sb, i, indent + "    ", visited);
+                    sb.append(indent).append("}\n");
                 }
+                appendNestedCode(sb, i, indent, visited);
             }
         }
     }
@@ -73,15 +72,6 @@ public class Panel3 extends JPanel {
             }
         }
         return false;
-    }
-
-    private int getFirstConnectedIndex(int parentIndex) {
-        for (List<Integer> connection : connections) {
-            if (connection.get(0) == parentIndex) {
-                return connection.get(1);
-            }
-        }
-        return -1;
     }
 
     private String getCodeForShape(String shapeName, int index, String indent) {
@@ -97,11 +87,11 @@ public class Panel3 extends JPanel {
                 break;
             case "IfBlock":
                 code.append(indent).append("// IfBlock\n");
-                code.append(indent).append("if (").append(inputs.get(index).getText()).append(") {\n");
+                code.append(indent).append("if (").append(inputs.get(index).getText()).append(") ");
                 break;
             case "ElseBlock":
                 code.append(indent).append("// ElseBlock\n");
-                code.append(indent).append("else {\n");
+                code.append(indent).append("else ");
                 break;
             case "Output":
                 code.append(indent).append("// Output\n");
@@ -109,7 +99,7 @@ public class Panel3 extends JPanel {
                 break;
             case "Loop":
                 code.append(indent).append("// Loop\n");
-                code.append(indent).append("while (").append(inputs.get(index).getText()).append(") {\n");
+                code.append(indent).append("while (").append(inputs.get(index).getText()).append(") ");
                 break;
             case "End":
                 code.append(indent).append("// End\n");
@@ -120,5 +110,12 @@ public class Panel3 extends JPanel {
                 break;
         }
         return code.toString();
+    }
+
+    public void clearPanel() {
+        imageNames.clear();
+        inputs.clear();
+        connections.clear();
+        codeArea.setText("");
     }
 }
