@@ -1,21 +1,37 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.io.*;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
 import java.util.List;
+import javax.tools.*;
 
 public class Panel3 extends JPanel {
     private List<String> imageNames = new ArrayList<>();
     private List<JTextField> inputs = new ArrayList<>();
     private List<List<Integer>> connections = new ArrayList<>();
     private JTextArea codeArea;
+    private JTextArea outputArea;
 
     Panel3() {
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(1, 2));
+
+        // Code area setup
         codeArea = new JTextArea(20, 50);
         codeArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         codeArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(codeArea);
-        this.add(scrollPane, BorderLayout.CENTER);
+        JScrollPane codeScrollPane = new JScrollPane(codeArea);
+        codeScrollPane.setBorder(BorderFactory.createTitledBorder("Generated Code"));
+        this.add(codeScrollPane);
+
+        // Output area setup
+        outputArea = new JTextArea(20, 50);
+        outputArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        outputArea.setEditable(false);
+        JScrollPane outputScrollPane = new JScrollPane(outputArea);
+        outputScrollPane.setBorder(BorderFactory.createTitledBorder("Output"));
+        this.add(outputScrollPane);
     }
 
     public void addImageName(String imageName) {
@@ -117,5 +133,57 @@ public class Panel3 extends JPanel {
         inputs.clear();
         connections.clear();
         codeArea.setText("");
+        outputArea.setText("");
+    }
+
+    public void runCode() {
+        String code = generateJavaCode();
+        String result = compileAndRun(code);
+        outputArea.setText(result);
+    }
+
+    private String compileAndRun(String code) {
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        if (compiler == null) {
+            return "No Java compiler available. Make sure you are using a JDK, not a JRE.";
+        }
+
+        StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
+        File sourceFile = null;
+        StringWriter compilationErrors = new StringWriter();
+
+        try {
+            // Ensure the file name matches the class name
+            sourceFile = new File(System.getProperty("java.io.tmpdir"), "GeneratedCode.java");
+            try (FileWriter writer = new FileWriter(sourceFile)) {
+                writer.write(code);
+            }
+
+            Iterable<? extends JavaFileObject> compilationUnits = fileManager.getJavaFileObjects(sourceFile);
+            JavaCompiler.CompilationTask task = compiler.getTask(compilationErrors, fileManager, null, null, null, compilationUnits);
+
+            if (!task.call()) {
+                return "Compilation failed:\n" + compilationErrors.toString();
+            }
+
+            // Load and run the compiled class
+            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{sourceFile.getParentFile().toURI().toURL()});
+            Class<?> cls = Class.forName("GeneratedCode", true, classLoader);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream oldOut = System.out;
+            System.setOut(new PrintStream(baos));
+            try {
+                cls.getDeclaredMethod("main", String[].class).invoke(null, (Object) new String[]{});
+            } finally {
+                System.setOut(oldOut);
+            }
+            return baos.toString();
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        } finally {
+            if (sourceFile != null && sourceFile.exists()) {
+                sourceFile.delete();
+            }
+        }
     }
 }

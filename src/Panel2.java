@@ -36,7 +36,7 @@ public class Panel2 extends JPanel {
         this.addMouseMotionListener(dragListener);
 
         JButton runButton = new JButton("Run");
-        runButton.setBounds(10, 10, 80, 30);  // Adjust the position and size as needed
+        runButton.setBounds(10, 10, 80, 30);
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,10 +44,11 @@ public class Panel2 extends JPanel {
                     panel3.addInputs(getInputs());
                     panel3.addConnections(getConnections());
                     panel3.updateCode();
+                    panel3.runCode();
                 }
             }
         });
-        this.setLayout(null);  // Using absolute positioning for the button
+        this.setLayout(null);
         this.add(runButton);
 
         // Clear button

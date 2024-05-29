@@ -7,7 +7,7 @@ public class WindowFrame extends JFrame {
     public WindowFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
-        this.setTitle("github.com/uuu4");
+        this.setTitle("github.com/uuu4 -- INTERACTIVE FLOWCHARTS");
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setLayout(new BorderLayout());
