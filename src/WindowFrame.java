@@ -5,7 +5,7 @@ public class WindowFrame extends JFrame {
     public WindowFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
-        this.setTitle("github.com/uuu4");
+        this.setTitle("github.com/uuu4 -- INTERACTIVE FLOWCHARTS");
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setLayout(new BorderLayout());
@@ -41,6 +41,7 @@ public class WindowFrame extends JFrame {
         // Set relationships
         panel1.setPanel2(panel2);
         panel1.setPanel3(panel3);
+        panel2.setPanel3(panel3);
 
         this.setVisible(true);
     }
