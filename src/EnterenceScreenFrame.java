@@ -16,8 +16,8 @@ public class EnterenceScreenFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // "Welcome To Graph Plotter" label
-        JLabel label = new JLabel("INTERACTIVE FLOWCHARTS");
+        // Custom JLabel with alpha transparency
+        AnimatedLabel label = new AnimatedLabel("INTERACTIVE FLOWCHARTS");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.TOP);
         label.setBorder(new EmptyBorder(90, 0, 0, 0));
@@ -132,6 +132,9 @@ public class EnterenceScreenFrame extends JFrame {
         innerPanel2.add(label3);
 
         getContentPane().add(mainPanel);
+
+        // Start the fade-in animation
+        label.startFadeIn();
     }
 
     public static EnterenceScreenFrame getInstance() {
@@ -143,5 +146,43 @@ public class EnterenceScreenFrame extends JFrame {
             }
         }
         return enterenceScreenFrame;
+    }
+
+    // Custom JLabel class with fade-in animation
+    private static class AnimatedLabel extends JLabel {
+        private float alpha = 0f; // Initial alpha value
+
+        public AnimatedLabel(String text) {
+            super(text);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+            super.paintComponent(g2);
+        }
+
+        public void startFadeIn() {
+            Timer timer = new Timer(50, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    alpha += 0.05f;
+                    if (alpha > 1f) {
+                        alpha = 1f;
+                        ((Timer) e.getSource()).stop();
+                    }
+                    repaint();
+                }
+            });
+            timer.start();
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            EnterenceScreenFrame frame = EnterenceScreenFrame.getInstance();
+            frame.setVisible(true);
+        });
     }
 }
