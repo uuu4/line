@@ -178,11 +178,4 @@ public class EnterenceScreenFrame extends JFrame {
             timer.start();
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            EnterenceScreenFrame frame = EnterenceScreenFrame.getInstance();
-            frame.setVisible(true);
-        });
-    }
 }
