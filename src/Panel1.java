@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Panel1 extends JPanel {
+public class Panel1 extends JPanel{
     Panel2 panel2;
     Panel3 panel3;
 
@@ -81,4 +81,7 @@ public class Panel1 extends JPanel {
     public void setPanel3(Panel3 panel3) {
         this.panel3 = panel3;
     }
+
+
+
 }

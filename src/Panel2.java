@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Panel2 extends JPanel {
+public class Panel2 extends JPanel implements Metod{
     List<ImageIcon> images = new ArrayList<>();
     List<Point> imageCorners = new ArrayList<>();
     List<JTextField> inputs = new ArrayList<>();
@@ -88,6 +88,8 @@ public class Panel2 extends JPanel {
         }
     }
 
+
+
     private class ClickListener extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent event) {
@@ -130,6 +132,9 @@ public class Panel2 extends JPanel {
         }
     }
 
+
+
+    @Override
     public void addImage(ImageIcon image, Point point, boolean addTextField) {
         images.add(image);
         imageCorners.add(point);
@@ -177,5 +182,10 @@ public class Panel2 extends JPanel {
         selectedImageIndex = -1;
         lastSelectedIndex = -1;
         repaint();
+    }
+
+    @Override
+    public void runCode() {
+
     }
 }

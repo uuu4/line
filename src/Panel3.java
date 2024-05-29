@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.List;
 import javax.tools.*;
 
-public class Panel3 extends JPanel {
+public class Panel3 extends JPanel implements Metod{
     private List<String> imageNames = new ArrayList<>();
     private List<JTextField> inputs = new ArrayList<>();
     private List<List<Integer>> connections = new ArrayList<>();
@@ -126,6 +126,11 @@ public class Panel3 extends JPanel {
                 break;
         }
         return code.toString();
+    }
+
+    @Override
+    public void addImage(ImageIcon image, Point point, boolean addTextField) {
+
     }
 
     public void clearPanel() {
