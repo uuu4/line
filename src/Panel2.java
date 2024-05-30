@@ -16,7 +16,7 @@ public class Panel2 extends JPanel {
     final int IMG_WIDTH = 100;
     final int IMG_HEIGHT = 100;
 
-    ImageIcon img1 = new ImageIcon(getClass().getResource("/images/1.png")); // Use getResource to load image from classpath
+    ImageIcon img1 = new ImageIcon(getClass().getResource("/images/1.png"));
     ImageIcon img2 = new ImageIcon(getClass().getResource("/images/2.png"));
     ImageIcon img3 = new ImageIcon(getClass().getResource("/images/3.png"));
     ImageIcon img4 = new ImageIcon(getClass().getResource("/images/4.png"));

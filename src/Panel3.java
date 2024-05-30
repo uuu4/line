@@ -17,7 +17,7 @@ public class Panel3 extends JPanel implements Metod{
     Panel3() {
         this.setLayout(new GridLayout(1, 2));
 
-        // Code area setup
+
         codeArea = new JTextArea(20, 50);
         codeArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         codeArea.setEditable(false);
@@ -25,7 +25,7 @@ public class Panel3 extends JPanel implements Metod{
         codeScrollPane.setBorder(BorderFactory.createTitledBorder("Generated Code"));
         this.add(codeScrollPane);
 
-        // Output area setup
+
         outputArea = new JTextArea(20, 50);
         outputArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         outputArea.setEditable(false);
@@ -158,7 +158,6 @@ public class Panel3 extends JPanel implements Metod{
         StringWriter compilationErrors = new StringWriter();
 
         try {
-            // Ensure the file name matches the class name
             sourceFile = new File(System.getProperty("java.io.tmpdir"), "GeneratedCode.java");
             try (FileWriter writer = new FileWriter(sourceFile)) {
                 writer.write(code);
@@ -171,7 +170,6 @@ public class Panel3 extends JPanel implements Metod{
                 return "Compilation failed:\n" + compilationErrors.toString();
             }
 
-            // Load and run the compiled class
             URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{sourceFile.getParentFile().toURI().toURL()});
             Class<?> cls = Class.forName("GeneratedCode", true, classLoader);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

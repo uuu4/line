@@ -16,7 +16,6 @@ public class EnterenceScreenFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Custom JLabel with alpha transparency
         AnimatedLabel label = new AnimatedLabel("INTERACTIVE FLOWCHARTS");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.TOP);
@@ -24,7 +23,6 @@ public class EnterenceScreenFrame extends JFrame {
         Font font = label.getFont();
         label.setFont(font.deriveFont(font.getSize() + 35f));
 
-        // "How to use" label
         JLabel label2 = new JLabel("How to use");
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBorder(new EmptyBorder(0, 0, 70, 0));
@@ -63,12 +61,12 @@ public class EnterenceScreenFrame extends JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                label2.setForeground(Color.BLUE); // Change text color to blue on mouse hover
+                label2.setForeground(Color.BLUE);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                label2.setForeground(Color.BLACK); // Change text color back to black on mouse exit
+                label2.setForeground(Color.BLACK);
             }
         });
 
@@ -88,7 +86,7 @@ public class EnterenceScreenFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 WindowFrame frame = new WindowFrame();
                 frame.setVisible(true);
-                EnterenceScreenFrame.this.setVisible(false); // Hide the entrance screen
+                EnterenceScreenFrame.this.setVisible(false);
             }
         });
 
@@ -148,9 +146,8 @@ public class EnterenceScreenFrame extends JFrame {
         return enterenceScreenFrame;
     }
 
-    // Custom JLabel class with fade-in animation
     private static class AnimatedLabel extends JLabel {
-        private float alpha = 0f; // Initial alpha value
+        private float alpha = 0f;
 
         public AnimatedLabel(String text) {
             super(text);

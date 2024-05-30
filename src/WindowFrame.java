@@ -10,15 +10,13 @@ public class WindowFrame extends JFrame {
         this.setResizable(true);
         this.setLayout(new BorderLayout());
 
-        // Panel1
         Panel1 panel1 = new Panel1();
         panel1.setPreferredSize(new Dimension(300, 500));
         panel1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
         this.add(panel1, BorderLayout.WEST);
 
-        // Panel2
         Panel2 panel2 = new Panel2();
-        panel2.setPreferredSize(new Dimension(900, 500)); // Set size of panel2
+        panel2.setPreferredSize(new Dimension(900, 500));
         panel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, false));
         JScrollPane scrollPane2 = new JScrollPane(panel2);
         scrollPane2.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3, false));
@@ -26,9 +24,8 @@ public class WindowFrame extends JFrame {
         scrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         this.add(scrollPane2, BorderLayout.CENTER);
 
-        // Panel3 with JScrollPane
         Panel3 panel3 = new Panel3();
-        panel3.setPreferredSize(new Dimension(1180, 300)); // Set preferred size larger to allow scrolling
+        panel3.setPreferredSize(new Dimension(1180, 300));
         panel3.setBackground(Color.WHITE);
 
         JScrollPane scrollPane3 = new JScrollPane(panel3);
@@ -38,7 +35,6 @@ public class WindowFrame extends JFrame {
 
         this.add(scrollPane3, BorderLayout.SOUTH);
 
-        // Set relationships
         panel1.setPanel2(panel2);
         panel1.setPanel3(panel3);
         panel2.setPanel3(panel3);
