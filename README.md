@@ -33,14 +33,12 @@ NOTE: Requires JDK22 or newer version.
    ```sh
    git clone https://github.com/uuu4/interactive-flowcharts.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Navigate to the src directory
+
+2. Navigate to the src directory
   ```sh
     cd interactive-flowcharts/src
    ```
+3. Run the executable program
 
 <!-- USAGE EXAMPLES -->
 ## Usage
