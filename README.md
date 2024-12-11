@@ -61,17 +61,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-
-<!-- CONTACT -->
-## Contact
-
-Ali Emre Aydin - aliemreaydin111@gmail.com
-
-Project Link: [https://github.com/uuu4/interactive-flowcharts](https://github.com/uuu4/interactive-flowcharts)
-
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [java]:https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png
