@@ -1,4 +1,4 @@
-<h1 align="center">Interactive Flowcharts</h1>
+<h1 align="center">LINE</h1>
 
  
 
@@ -33,14 +33,12 @@ NOTE: Requires JDK22 or newer version.
    ```sh
    git clone https://github.com/uuu4/interactive-flowcharts.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Navigate to the src directory
+
+2. Navigate to the src directory
   ```sh
     cd interactive-flowcharts/src
    ```
+3. Run the executable program
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -60,17 +58,6 @@ Don't forget to give the project a star! Thanks again!
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Ali Emre Aydin - aliemreaydin111@gmail.com
-
-Project Link: [https://github.com/uuu4/interactive-flowcharts](https://github.com/uuu4/interactive-flowcharts)
-
 
 
 

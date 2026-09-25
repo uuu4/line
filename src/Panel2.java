@@ -28,6 +28,8 @@ public class Panel2 extends JPanel {
     int selectedImageIndex = -1;
     int lastSelectedIndex = -1;
 
+    JPopupMenu contextMenu;
+
     Panel2() {
         ClickListener clickListener = new ClickListener();
         this.addMouseListener(clickListener);
@@ -53,7 +55,7 @@ public class Panel2 extends JPanel {
 
         // Clear button
         JButton clearButton = new JButton("Clear");
-        clearButton.setBounds(100, 10, 80, 30);  // Adjust the position and size as needed
+        clearButton.setBounds(100, 10, 80, 30);
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,6 +66,33 @@ public class Panel2 extends JPanel {
             }
         });
         this.add(clearButton);
+
+        // Initialize context menu
+        contextMenu = new JPopupMenu();
+        JMenuItem connectItem = new JMenuItem("Connect to another shape");
+        connectItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedImageIndex != -1 && lastSelectedIndex != -1 && lastSelectedIndex != selectedImageIndex) {
+                    connections.add(List.of(lastSelectedIndex, selectedImageIndex));
+                    repaint();
+                }
+            }
+        });
+
+        JMenuItem loopItem = new JMenuItem("Create loop with this shape");
+        loopItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedImageIndex != -1) {
+                    connections.add(List.of(selectedImageIndex, selectedImageIndex));
+                    repaint();
+                }
+            }
+        });
+
+        contextMenu.add(connectItem);
+        contextMenu.add(loopItem);
     }
 
     @Override
@@ -93,7 +122,10 @@ public class Panel2 extends JPanel {
         public void mousePressed(MouseEvent event) {
             Point clickPoint = event.getPoint();
             selectedImageIndex = getSelectedImageIndex(clickPoint);
-            if (selectedImageIndex != -1 && lastSelectedIndex != -1 && lastSelectedIndex != selectedImageIndex) {
+
+            if (SwingUtilities.isRightMouseButton(event) && selectedImageIndex != -1) {
+                contextMenu.show(Panel2.this, event.getX(), event.getY());
+            } else if (selectedImageIndex != -1 && lastSelectedIndex != -1 && lastSelectedIndex != selectedImageIndex) {
                 connections.add(List.of(lastSelectedIndex, selectedImageIndex));
                 repaint();
             }
